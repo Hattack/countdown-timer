@@ -1,12 +1,25 @@
 
 
-<section id="overTime"></section>
+<section id="overTime0"></section>
+<section id="overTime1"></section>
+<section id="overTime2"></section>
 
 <script type='text/javascript' src="overTime.js"></script>
 <script>
-    overTime(option ={
+
+    overTime('overTime0',option ={
         "date_start": Date.now()/1000,
         "date_end"  : Date.now()/1000+20,
+        "type": "" //clock || clockLine
+    });
+    overTime('overTime1',option ={
+        "date_start": Date.now()/1000,
+        "date_end"  : Date.now()/1000+30,
+        "type": "" //clock || clockLine
+    });
+    overTime('overTime2',option ={
+        "date_start": Date.now()/1000,
+        "date_end"  : Date.now()/1000+40,
         "type": "" //clock || clockLine
     });
 </script>

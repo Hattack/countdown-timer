@@ -4,9 +4,9 @@
         <script type='text/javascript' src="overTime.js"></script>
     call
         html
-            <section id="overTime"></section>
+            <section id="overTime"></section> //id element optional
         script
-            overTime(option ={
+            overTime('overTime',option ={
                 "date_start": Date.now()/1000,
                 "date_end"  : Date.now()/1000+20,
                 "type": "" //clock || clockLine
@@ -14,9 +14,9 @@
     extended version
         https://codepen.io/Hattack/pen/LOyvbd
 ===========================================*/
-function overTime(option) {
+function overTime(element,option) {
     var
-        overTime                = document.getElementById('overTime'),
+        overTime1               = document.getElementById(element),
 
         wrap3501                = document.createElement('div'),
         wrap3501__gradient      = document.createElement('div'),
@@ -27,22 +27,28 @@ function overTime(option) {
         wrap3502TimerMin        = document.createElement('span'),
         wrap3502TimerSec        = document.createElement('span');
 
+    console.log(overTime1);
+
     wrap3501.className  = 'wrap3501';
     wrap3501.id         = 'wrap3501';
-    overTime.appendChild(wrap3501);
     wrap3501__gradient.id   = 'wrap3501__gradient';
-    wrap3501Elem            = document.getElementById('wrap3501');
+    wrap3501__gradient.className   = 'wrap3501__gradient';
+    overTime1.insertBefore(wrap3501,null);
+
+    wrap3501Elem            = overTime1.querySelector('#wrap3501');
+    console.log(wrap3501Elem);
     wrap3501Elem.appendChild(wrap3501__gradient);
 
     wrap3502.className  = 'wrap3502';
     wrap3502.id         = 'wrap3502';
-    overTime.appendChild(wrap3502);
+    overTime1.appendChild(wrap3502);
     wrap3502Timer.className = 'timer';
     wrap3502Timer.id        = 'timerText';
-    wrap3502Elem            = document.getElementById('wrap3502');
-    wrap3502Elem.appendChild(wrap3502Timer);
+    wrap3502Elem            = overTime1.querySelector('#wrap3502');
 
-    wrap3502TimerElem   = document.getElementById('timerText');
+    wrap3502Elem.insertBefore(wrap3502Timer, null);
+
+    wrap3502TimerElem   = overTime1.querySelector('#timerText');
     wrap3502TimerHours.className  = 'hours';
     wrap3502TimerMin.className    = 'min';
     wrap3502TimerSec.className    = 'sec';
@@ -62,14 +68,14 @@ function overTime(option) {
         count       = option.date_end,
         grad3501    = 'yes',// if "no", then block gradient none, else yes
         fps         = 100,
-        gradient    = document.getElementById('wrap3501__gradient'),
+        gradient    = overTime1.querySelector('.wrap3501__gradient'),
         wrap3501    = document.getElementById('wrap3501'),
         wrap3502    = document.getElementById('wrap3502'),
         container   = document.querySelectorAll('.wrap3501__container');
 
-    var htmlSec     = document.querySelector('.sec'),
-        htmlMin     = document.querySelector('.min'),
-        htmlHours   = document.querySelector('.hours'),
+    var htmlSec     = overTime1.querySelector('.sec'),
+        htmlMin     = overTime1.querySelector('.min'),
+        htmlHours   = overTime1.querySelector('.hours'),
         seconds,minits,allHour;
 
     (option.type == 'clock')?wrap3501Elem.style.display = 'none':'';
@@ -145,7 +151,7 @@ function overTime(option) {
             '    }\n' +
             '\n' +
             '\n' +
-            '    #overTime {\n' +
+            '    [id *="overTime"] {\n' +
             '        width: var(--main-size-width);\n' +
             '        height: var(--main-size-height);\n' +
             '        margin: auto;\n' +
@@ -173,7 +179,7 @@ function overTime(option) {
             '        align-items: flex-end;\n' +
             '        overflow: hidden;\n' +
             '    }\n' +
-            '    #wrap3501__gradient {\n' +
+            '    #wrap3501__gradient,.wrap3501__gradient {\n' +
             '        position: absolute;\n' +
             '        height: 100%;\n' +
             '        background: var(--main-gradient);\n' +
